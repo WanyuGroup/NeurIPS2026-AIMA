@@ -1,0 +1,12 @@
+torch>=2.0
+transformers>=4.40
+peft>=0.10
+tqdm
+openai>=1.0
+backoff
+vllm>=0.5
+datasets>=2.14
+json5
+srsly
+sentence-transformers>=2.2
+trl>=0.9
