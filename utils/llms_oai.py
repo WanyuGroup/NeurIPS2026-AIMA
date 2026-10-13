@@ -20,8 +20,10 @@ class LLMs:
         self.parameters = parameters if parameters is not None else {"temperature": 0.9, "top_p": 0.7}
         self.max_retries = max_retries
 
-        api_key = os.getenv("OPENAI_API_KEY", "xxxxx")
-        base_url = os.getenv("OPENAI_BASE_URL", "xxxxx")
+        api_key = os.getenv("OPENAI_API_KEY")
+        base_url = os.getenv("OPENAI_BASE_URL") or None
+        if not api_key or api_key == "xxxxx":
+            raise RuntimeError("Set OPENAI_API_KEY before making cloud requests.")
         self.client = OpenAI(api_key=api_key, base_url=base_url)
 
     def request(self, prompt):
@@ -38,14 +40,13 @@ class LLMs:
                 msg = str(e)
                 if "401" in msg or "Unauthorized" in msg:
                     print("401 Unauthorized. Check OPENAI_API_KEY, OPENAI_BASE_URL, or model access.")
-                    print(msg)
                     break
                 elif any(x in msg for x in ["429", "502", "503", "504"]):
                     sleep_time = 2**attempt + random.random()
-                    print(f"Transient error, retry in {sleep_time:.1f}s: {msg}")
+                    print(f"Transient API error, retry in {sleep_time:.1f}s.")
                     time.sleep(sleep_time)
                     continue
                 else:
-                    print(f"Error: {msg}")
+                    print(f"API request failed ({type(e).__name__}).")
                     break
         return None

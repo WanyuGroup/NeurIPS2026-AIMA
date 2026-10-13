@@ -27,10 +27,16 @@ Run from the package root (containing `Method_Ours/`, `data/`, `utils/`). Instal
 | Step | Script | Role |
 |------|--------|------|
 | 1 | `Ours1_askquestion.py` | Local LM + optional LoRA; strategy + branch outputs; optional privacy rewrite (`privacy_gate.py`). |
-| 2 | `Ours2_LLMgeneration.py` | Chat API per branch (configure `OPENAI_API_KEY`, `OPENAI_BASE_URL`; defaults use placeholder `xxxxx` until set). |
+| 2 | `Ours2_LLMgeneration.py` | Chat API per branch (set `OPENAI_API_KEY`; optionally configure `OPENAI_BASE_URL`). |
 | 3 | `Ours3_SLMgenerate.py` | vLLM (default) or `--openai` for final answers from retrieval prompts. |
 
 Defaults align filenames across steps: base weights `Qwen/Qwen2.5-7B-Instruct`, file tag `Qwen2.5-7B-Instruct`, `--file_model_tag` in Step 2 matches Step 1 `--model_name`. Do not commit real API keys.
+
+## Release scope
+
+This release contains AIMA training and inference code. Offline data generation, teacher annotation, preference mining, and comparison-method utilities are not included. Training scripts read externally prepared labels and preference pairs; runtime sample formatting and tokenization are required for training.
+
+Keep API credentials and key files outside this repository.
 
 ## Citation
 

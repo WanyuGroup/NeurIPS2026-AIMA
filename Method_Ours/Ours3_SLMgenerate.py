@@ -13,7 +13,7 @@ import srsly
 from vllm import LLM, SamplingParams
 from vllm.lora.request import LoRARequest
 
-from data.formetters import get_baseline_rag_formatter, prepare_prompts_dict
+from data.formetters import get_answer_formatter, prepare_prompts_dict
 from utils.custom_llm import OpenAILLM
 from utils.json_utils import str_to_json
 
@@ -76,7 +76,7 @@ if __name__ == "__main__":
     dataset_profile = srsly.read_json(args.inputs_profile)
 
     if args.openai:
-        api_key = os.environ.get("OPENAI_API_KEY", "xxxxx")
+        api_key = os.environ.get("OPENAI_API_KEY")
         if args.api_key_addr and os.path.isfile(args.api_key_addr):
             with open(args.api_key_addr, "r", encoding="utf-8") as file:
                 api_key = file.read().strip()
@@ -92,7 +92,7 @@ if __name__ == "__main__":
         tokenizer = llm.get_tokenizer()
         is_proprietary_llm = False
 
-    formater = get_baseline_rag_formatter(tokenizer, args.num_contexts, proprietary_llm=is_proprietary_llm)
+    formater = get_answer_formatter(tokenizer, args.num_contexts, proprietary_llm=is_proprietary_llm)
     prompts, ids = prepare_prompts_dict(dataset, dataset_profile, formater)
 
     outputs_dict = {}

@@ -35,8 +35,10 @@ class OutputHelper:
 
 @backoff.on_exception(backoff.expo, RateLimitError)
 def get_completion_from_gpt(messages, model_name, max_tokens, api_key, temperature):
-    base_url = os.environ.get("OPENAI_BASE_URL", "xxxxx")
-    effective_key = api_key if api_key else os.environ.get("OPENAI_API_KEY", "xxxxx")
+    base_url = os.environ.get("OPENAI_BASE_URL") or None
+    effective_key = api_key if api_key else os.environ.get("OPENAI_API_KEY")
+    if not effective_key or effective_key == "xxxxx":
+        raise RuntimeError("Set OPENAI_API_KEY before making cloud requests.")
     client = OpenAI(base_url=base_url, api_key=effective_key)
     msg_list = _to_chat_messages(messages)
     response = client.chat.completions.create(
