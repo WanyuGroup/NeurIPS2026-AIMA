@@ -1,4 +1,4 @@
-# AIMA
+# NeurIPS2026-AIMA
 
 Official code repository for **Learning to Ask: Metacognitive Action Policy for Large and Small Language Model Collaboration**.
 
@@ -45,6 +45,6 @@ If you use this code in your research, please cite:
   month     = dec,
   address   = {Sydney, Australia},
   pages     = {1--33},
-  url       = {https://github.com/ZhangJiayuan-BUAA/AIMA}
+  url       = {https://github.com/WanyuGroup/NeurIPS2026-AIMA}
 }
 ```
