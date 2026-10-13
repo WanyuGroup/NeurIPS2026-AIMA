@@ -4,12 +4,6 @@ Official code repository for **Learning to Ask: Metacognitive Action Policy for 
 
 **Accepted at NeurIPS 2026.**
 
-Jiayuan Zhang, Jianwei Niu, Xuefeng Liu, Haotian Yang, Guogang Zhu, Yuhui Niu, Wanyu Lin*, and Xinghao Wu.
-
-*Corresponding author.
-
-In Proceedings of the 40th Annual Conference on Neural Information Processing Systems (NeurIPS), Sydney, Australia, December 2026, pp. 1–33.
-
 ## Installation and usage
 
 Run from the package root (containing `Method_Ours/`, `data/`, `utils/`). Install: `pip install -r requirements.txt`.
