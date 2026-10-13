@@ -11,7 +11,7 @@ Decomposed DPO (hierarchical preferences, shared contexts within each subset):
 
 Reward ordering (R(tau+) > R(tau-)) is assumed to hold when constructing offline JSON pairs.
 
-Input JSON: externally prepared preference samples:
+Input JSON: same structure as Method_Training/train_DPO.py / dpo_construct output:
   - strategy_pair: chosen_label, rejected_label, prompt (optional), chosen_aug, ...
   - answer_pair: chosen_answer, rejected_answer, prompt (optional)
   - context: profile, question

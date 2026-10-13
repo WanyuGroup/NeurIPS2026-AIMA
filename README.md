@@ -32,12 +32,6 @@ Run from the package root (containing `Method_Ours/`, `data/`, `utils/`). Instal
 
 Defaults align filenames across steps: base weights `Qwen/Qwen2.5-7B-Instruct`, file tag `Qwen2.5-7B-Instruct`, `--file_model_tag` in Step 2 matches Step 1 `--model_name`. Do not commit real API keys.
 
-## Release scope
-
-This release contains AIMA training and inference code. Offline data generation, teacher annotation, preference mining, and comparison-method utilities are not included. Training scripts read externally prepared labels and preference pairs; runtime sample formatting and tokenization are required for training.
-
-Keep API credentials and key files outside this repository.
-
 ## Citation
 
 If you use this code in your research, please cite:

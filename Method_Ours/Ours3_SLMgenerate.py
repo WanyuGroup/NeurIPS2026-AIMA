@@ -13,7 +13,7 @@ import srsly
 from vllm import LLM, SamplingParams
 from vllm.lora.request import LoRARequest
 
-from data.formetters import get_answer_formatter, prepare_prompts_dict
+from data.formetters import get_baseline_rag_formatter, prepare_prompts_dict
 from utils.custom_llm import OpenAILLM
 from utils.json_utils import str_to_json
 
@@ -92,7 +92,7 @@ if __name__ == "__main__":
         tokenizer = llm.get_tokenizer()
         is_proprietary_llm = False
 
-    formater = get_answer_formatter(tokenizer, args.num_contexts, proprietary_llm=is_proprietary_llm)
+    formater = get_baseline_rag_formatter(tokenizer, args.num_contexts, proprietary_llm=is_proprietary_llm)
     prompts, ids = prepare_prompts_dict(dataset, dataset_profile, formater)
 
     outputs_dict = {}
