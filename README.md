@@ -8,24 +8,6 @@ Official code repository for **Learning to Ask: Metacognitive Action Policy for 
 
 Run from the package root (containing `Method_Ours/`, `data/`, `utils/`). Install: `pip install -r requirements.txt`.
 
-## Training
-
-1. **Joint SFT** — `Method_Ours/train_SFT_multitask.py` (see file header for loss).  
-   Example: `python Method_Ours/train_SFT_multitask.py --base_model <id or path> --train_file <json> --output_dir <dir> --bf16`
-
-2. **Decomposed DPO** — `Method_Ours/train_DPO.py` (after SFT).  
-   Example: `python Method_Ours/train_DPO.py --base_model <id> --adapter_path <lora or model> --dpo_file <json> --output_dir <dir>`
-
-## Inference (three scripts)
-
-| Step | Script | Role |
-|------|--------|------|
-| 1 | `Ours1_askquestion.py` | Local LM + optional LoRA; strategy + branch outputs; optional privacy rewrite (`privacy_gate.py`). |
-| 2 | `Ours2_LLMgeneration.py` | Chat API per branch (set `OPENAI_API_KEY`; optionally configure `OPENAI_BASE_URL`). |
-| 3 | `Ours3_SLMgenerate.py` | vLLM (default) or `--openai` for final answers from retrieval prompts. |
-
-Defaults align filenames across steps: base weights `Qwen/Qwen2.5-7B-Instruct`, file tag `Qwen2.5-7B-Instruct`, `--file_model_tag` in Step 2 matches Step 1 `--model_name`. Do not commit real API keys.
-
 ## Citation
 
 If you use this code in your research, please cite:
